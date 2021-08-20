@@ -15,16 +15,12 @@ use kartik\select2\Select2;
 <?= $form->field($task, 'taskName')->textInput() ?>
 <?= $form->field($task, 'deadline')->input('date') ?>
 <?= $form->field($task, 'description')->textInput() ?>
-<?php try {
-    echo $form->field($task, 'status')->widget(Select2::class, [
+<?= $form->field($task, 'status')->widget(Select2::class, [
         'data' => Task::STATUSES,
         'pluginOptions' => [
             'disabled' => $task->status === Task::STATUS_COMPLETED,
         ]
-    ]);
-} catch (Exception $e) {
-    Yii::warning('Cтатусы не найдены');
-} ?>
+    ]) ?>
 
 <br>
 <?= Html::submitButton('Применить', ['class' => 'btn btn-light']) ?>

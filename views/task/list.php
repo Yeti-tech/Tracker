@@ -68,8 +68,7 @@ use app\models\tracker\User;
 <?php endif ?>
 
 
-<?php try {
-    echo GridView::widget(
+<?= GridView::widget(
         [
             'dataProvider' => $dataProvider,
             'summary' => false,
@@ -97,8 +96,7 @@ use app\models\tracker\User;
                     'value' => static function (Task $task) {
                         return $task->user->getDisplayName();
                     },
-                    'filter' => ArrayHelper::map(User::find()->
-                    select(['name', 'surname', 'id'])->all(),
+                    'filter' => ArrayHelper::map(User::find()->select(['name', 'surname', 'id'])->all(),
                         'id', 'displayName'),
                 ],
                 [
@@ -163,10 +161,8 @@ use app\models\tracker\User;
                 ],
             ]
         ]
-    );
-} catch (Exception $e) {
-    Yii::warning('Информация не может быть отображена');
-} ?>
+    )
+?>
 <br>
 <?= Html::a('Новая задача', ['task/new'], ['class' => 'btn btn-default']) ?>
 <br>
